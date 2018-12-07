@@ -8,7 +8,7 @@ class RegisterController extends React.Component {
         super(props);
     }
 
-    onRegister(e) {
+    async onRegister(e) {
         e.preventDefault();
 
         let formData = new FormData(e.target);
@@ -17,21 +17,13 @@ class RegisterController extends React.Component {
             object[key] = value;
         });
 
-        
-        axios({
-            method: "POST",
-            url: 'http://localhost:3000/api/register',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': "application/json"
-	        },
-            body: {
-                user: {object}
-            }
-        }).then((response) => {
-            console.log(response);
-        })
-
+        try {
+            const res = await axios.post('/api/register', {user: object});
+            console.log(res);
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
 
 
