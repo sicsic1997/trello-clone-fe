@@ -13,13 +13,17 @@ class LoginController extends React.Component {
 
         let formData = new FormData(e.target);
         let object = {};
+
         formData.forEach(function(value, key){
             object[key] = value;
         });
 
+        axios.defaults.headers.common['Authorization'] = 'Bearer ';
+
         try {
-            const res = await axios.post('/api/login', {user: object});
-            console.log(res.data);
+            let {token, user} = (({data}) => data)(await axios.post('/api/login', {user: object}))
+            axios.defaults.headers.common['Authorization'] += token;
+            localStorage.setItem('_user', user);
         }
         catch(error) {
             console.log(error);
