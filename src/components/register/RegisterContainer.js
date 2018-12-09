@@ -8,23 +8,24 @@ class RegisterController extends React.Component {
         super(props);
     }
 
-    async onRegister(e) {
+    onRegister = async (e) => {
         e.preventDefault();
 
         let formData = new FormData(e.target);
-        var object = {};
+        let object = {};
         formData.forEach(function(value, key){
             object[key] = value;
         });
 
         try {
-            const res = await axios.post('/api/register', {user: object});
-            console.log(res);
+            await axios.post('/api/register', {user: object});
+            this.props.history.push('/login');
         }
         catch(error) {
             console.log(error);
         }
-    }
+
+    };
 
 
     render() {

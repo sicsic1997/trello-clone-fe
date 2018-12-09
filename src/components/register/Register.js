@@ -37,7 +37,7 @@ const Register = (props) => {
               </div>
             </div>
             <div className="row">
-              <div className="input-field col s8 offset-s8">
+              <div className="input-field col s2 offset-s8">
                 <button className="btn waves-effect waves-light" type="submit" >Submit
                     <i className="material-icons right">send</i>
                 </button>
