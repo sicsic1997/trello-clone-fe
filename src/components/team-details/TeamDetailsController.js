@@ -7,7 +7,6 @@ class TeamDetailsController extends React.Component {
     constructor(props) {
 
         super(props);
-        
 
     }
 
@@ -20,24 +19,35 @@ class TeamDetailsController extends React.Component {
             object[key] = value;
         });
         console.log(object);
-        await axios.post('/api/team', {team: object});
+        let team = (await axios.post('/api/team', {team: object})).data;
+        console.log(team);
+        this.setState({team: team});
+        this.setState({componentState: "view"})
+    }
+
+    componentWillMount = async() => {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ';
+        axios.defaults.headers.common['Authorization'] += localStorage.getItem("token");
+
+        let componentState;
+        let team;
+        console.log(this.props);
+        if (this.props.match.params.teamId === undefined){
+            componentState = "create";
+        } else {
+            componentState = this.props.match.params.mode;
+        }
+
+        this.setState({
+            componentState:componentState,
+        })
 
     }
 
-    componentWillMount() {
-        localStorage.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZ…cwOX0.OEjPlpqiH4ZutTfauorHQEPrrDZNez97-7z0a3MNdr0";
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-        if (this.props.match.params.teamId == undefined){
-            this.componentState = "create";
-        }
-        else {
-            this.componentState = "edit";
-        }
-    }
-
-    render() {
+    render = () => {
       
-        return <TeamDetails componentState={this.componentState} onClickCreate ={this.onClickCreate}/>;
+        console.log("@");
+        return <TeamDetails team={this.state.team} componentState={this.state.componentState} onClickCreate ={this.onClickCreate}/>;
 
     }
 
