@@ -1,9 +1,14 @@
 import React from 'react'
 
-const Team = (props) => { 
+const Teams = (props) => { 
     return (
-    <h1>TEAM CRUD</h1>
+    <div>
+        <h1>TEAM CRUD</h1>
+        <button className="btn waves-effect waves-light" onClick={props.onClickCreate} > Create new team
+            <i className="material-icons right">send</i>
+        </button>
+    </div>
     )
 }
 
-export default Team;
+export default Teams;

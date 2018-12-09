@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 
 import RegisterController from './components/register/RegisterController.js'
 import LoginController from './components/login/LoginController.js'
-import TeamComponent from './components/teams/TeamsController.js'
+import TeamsController from './components/teams/TeamsController.js'
+import TeamDetailsController from './components/team-details/TeamDetailsController.js'
 
 class App extends Component {
   render() {
@@ -19,7 +20,8 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={RegisterController} />
               <Route exact path="/login" component={LoginController} />
-              <Route exact path="/teams" component={TeamComponent} />
+              <Route exact path="/teams" component={TeamsController} />
+              <Route exact path="/team-details" component={TeamDetailsController} />
             </div>
           </div>
         </BrowserRouter>  

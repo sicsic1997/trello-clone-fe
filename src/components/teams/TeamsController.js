@@ -8,8 +8,12 @@ class TeamsController extends React.Component {
         super(props);
     }
 
+    onClickCreate = (e) => {
+        this.props.history.push('/team-details', {componentState: "create", id: undefined});
+    }
+
     render() {
-        return <Teams/>;
+        return <Teams onClickCreate={this.onClickCreate}/>;
     }
 
 }
