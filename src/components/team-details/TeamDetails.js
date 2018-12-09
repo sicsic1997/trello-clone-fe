@@ -13,46 +13,27 @@ const TeamDetails = (props) => {
            ( <div className="row ">
                 <form onSubmit={props.onRegister}>
                     <div className="row ">
-                    <div className="input-field col s4 offset-s2">
-                        <input placeholder="john_doe" id="userName" name="userName" type="text" className="validate" />
-                        <label className="active" htmlFor="userName">Username</label>
-                    </div>
-                    <div className="input-field col s4">
-                        <input placeholder="Minimum length of 8 characters" id="password" name="password" type="password" className="validate" />
-                        <label className="active" htmlFor="password">Password</label>
-                    </div>
+                        <div className="input-field col s4 offset-s4">
+                            <input placeholder="My team" id="teamName" name="teamName" type="text" className="validate" />
+                            <label className="active" htmlFor="teamName">Team name</label>
+                        </div>
                     </div>
                     <div className="row">
-                    <div className="input-field col s4 offset-s2">
-                        <input placeholder="John" id="firstName" name="firstName" type="text" className="validate" />
-                        <label className="active" htmlFor="firstName">First Name</label>
-                    </div>
-                    <div className="input-field col s4">
-                        <input placeholder="Doe" id="lastName" name="lastName" type="text" className="validate" />
-                        <label className="active" htmlFor="lastName">Last Name</label>
-                    </div>
+                        <div className="input-field col s4 offset-s4">
+                            <input placeholder="My team's description" id="description" name="description" type="text" className="validate" />
+                            <label className="active" htmlFor="description"> Team description</label>
+                        </div>
                     </div>
                     <div className="row">
-                    <div className="input-field col s8 offset-s2">
-                        <input placeholder="john_doe@address.com" id="email" name="email" type="email" className="validate" />
-                        <label className="active" htmlFor="email">Email</label>
-                    </div>
-                    </div>
-                    <div className="row">
-                    <div className="input-field col s8 offset-s2">
-                        <input placeholder="I am John, John Doe." id="bio" name="bio" type="text" className="validate" />
-                        <label className="active" htmlFor="bio">Bio</label>
-                    </div>
-                    </div>
-                    <div className="row">
-                    <div className="input-field col s2 offset-s8">
-                        <button className="btn waves-effect waves-light" type="submit" >Submit
-                            <i className="material-icons right">send</i>
-                        </button>
-                    </div>
+                        <div className="input-field col s2 offset-s4">
+                            <button className="btn waves-effect waves-light" type="submit">Create team
+                                <i className="material-icons right">send</i>
+                            </button>
+                        </div>
                     </div>
                 </form>
            </div> )
+           break;
         default:
             fields = (
             <div>
@@ -65,6 +46,7 @@ const TeamDetails = (props) => {
     return (
         <div>
             {header}
+            {fields}
         </div>
     );
 }
