@@ -1,16 +1,12 @@
 import React from 'react'
 
-const TeamDetailsHeader = (props) => {
-
-    return (
-        <h3> Team details page: {props.state.componentState} </h3>
-    );
-
-}
-
 const TeamDetails = (props) => { 
 
-    let fields;
+    let header = (
+        <h3> Team details page: {props.state.componentState} </h3>
+    );
+    
+    let fields
     switch(props.state.componentState) {
         case "create":
            fields = 
@@ -64,9 +60,11 @@ const TeamDetails = (props) => {
             </div> )
     }
 
+    let componentHtml = header + (<br />) + fields
+
     return (
         <div>
-            { TeamDetailsHeader(props) }
+            {header}
         </div>
     );
 }
