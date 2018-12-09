@@ -5,13 +5,13 @@ import TeamDetails from './TeamDetails'
 class TeamDetailsController extends React.Component {
 
     constructor(props) {
-        super(props);
 
-        this.state = props.location.state;
-        console.log(this.state);
+        super(props);
+        
+
     }
 
-    onClickCreate = (e) => {
+    onClickCreate = async(e) => {
         e.preventDefault();
 
         let formData = new FormData(e.target);
@@ -20,13 +20,25 @@ class TeamDetailsController extends React.Component {
             object[key] = value;
         });
         console.log(object);
-        this.setState({ componentState:"view", id: undefined});
-        this.render();
+        await axios.post('/api/team', {team: object});
+
+    }
+
+    componentWillMount() {
+        localStorage.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZ…cwOX0.OEjPlpqiH4ZutTfauorHQEPrrDZNez97-7z0a3MNdr0";
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+        if (this.props.match.params.teamId == undefined){
+            this.componentState = "create";
+        }
+        else {
+            this.componentState = "edit";
+        }
     }
 
     render() {
-        console.log(this.state);
-        return <TeamDetails state={this.state}/>;
+      
+        return <TeamDetails componentState={this.componentState} onClickCreate ={this.onClickCreate}/>;
+
     }
 
 }

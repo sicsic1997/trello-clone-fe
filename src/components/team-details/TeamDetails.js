@@ -3,15 +3,15 @@ import React from 'react'
 const TeamDetails = (props) => { 
 
     let header = (
-        <h3> Team details page: {props.state.componentState} </h3>
+        <h3> Team details page: {props.componentState} </h3>
     );
     
     let fields
-    switch(props.state.componentState) {
+    switch(props.componentState) {
         case "create":
            fields = 
            ( <div className="row ">
-                <form onSubmit={props.onRegister}>
+                <form onSubmit={props.onClickCreate}>
                     <div className="row ">
                         <div className="input-field col s4 offset-s4">
                             <input placeholder="My team" id="teamName" name="teamName" type="text" className="validate" />

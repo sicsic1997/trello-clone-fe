@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path="/register" component={RegisterController} />
               <Route exact path="/login" component={LoginController} />
               <Route exact path="/teams" component={TeamsController} />
-              <Route exact path="/team-details" component={TeamDetailsController} />
+              <Route  path="/team-details/:teamId?" component={TeamDetailsController} />
             </div>
           </div>
         </BrowserRouter>  
