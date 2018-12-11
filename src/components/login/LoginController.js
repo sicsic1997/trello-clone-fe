@@ -22,8 +22,9 @@ class LoginController extends React.Component {
         try {
             let {token, user} = (({data}) => data)(await axios.post('/api/login', {user: object}))
             axios.defaults.headers.common['Authorization'] += token;
-            localStorage.setItem('_user', user);
+            localStorage.setItem('_user', JSON.stringify(user));
             localStorage.setItem('token', token);
+            console.log("Succes")
         }
         catch(error) {
             console.log(error);

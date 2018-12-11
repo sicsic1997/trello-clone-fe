@@ -18,9 +18,22 @@ class TeamDetailsController extends React.Component {
         formData.forEach(function(value, key){
             object[key] = value;
         });
-        console.log(object);
+        
+        // Create team
         let team = (await axios.post('/api/team', {team: object})).data;
-        console.log(team);
+        console.log(team)
+
+        // Map user to team
+        let currentUser = JSON.parse(localStorage['_user']);
+        let userTeamParam = {
+            userId: currentUser._id,
+            teamId: team._id,
+            userRole: "OWNER"
+        }
+        let userTeam = (await axios.post('/api/userTeam', {userTeam: userTeamParam})).data; 
+        console.log(userTeam);
+
+        this.setState({userTeamList: [userTeam]});
         this.setState({team: team});
         this.setState({componentState: "view"})
     }
@@ -47,9 +60,12 @@ class TeamDetailsController extends React.Component {
     render = () => {
       
         console.log("@");
-        return <TeamDetails team={this.state.team} componentState={this.state.componentState} onClickCreate ={this.onClickCreate}/>;
-
-    }
+        return <TeamDetails 
+            userTeamList={this.state.userTeamList}
+            team={this.state.team}
+            componentState={this.state.componentState} 
+            onClickCreate={this.onClickCreate}/>;
+        }
 
 }
 

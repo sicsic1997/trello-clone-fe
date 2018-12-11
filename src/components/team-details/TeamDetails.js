@@ -1,7 +1,6 @@
 import React from 'react'
 
 const TeamDetails = (props) => { 
-    console.log(props.componentState);
     let header = (
         <h3> Team details page: {props.componentState} </h3>
     );
@@ -60,16 +59,17 @@ const TeamDetails = (props) => {
                 </form>
             </div> )
             break;
-        case "view": 
-        fields = (
+        case "view":
+            let userTeamListHtml = props.userTeamList.map((userTeamItem) => {
+                                        return <li>{userTeamItem.userId + " " + userTeamItem.teamId + " " + userTeamItem.userRole} </li>
+                                    })
+            console.log(userTeamListHtml);
+            fields = (
             <div>
                 <p>Team name: {props.team.teamName}</p>
                 <p>Team description: {props.team.description}</p>
-                <div className="input-field col s2 offset-s4">
-                    <button className="btn waves-effect waves-light" onClick={props.onClickDelete}>Delete team
-                        <i className="material-icons right">send</i>
-                    </button>
-                </div>
+                <p>User in team:</p>
+                <div>{userTeamListHtml}</div>
                 <div className="input-field col s2 offset-s4">
                     <button className="btn waves-effect waves-light" onClick={props.onClickEditRedirect}>Edit team
                         <i className="material-icons right">send</i>
@@ -79,13 +79,11 @@ const TeamDetails = (props) => {
         )
         break;
         default:
-        fields = (
+            fields = (
             <div>
                 INCORRECT STATE
             </div> )
     }
-
-    let componentHtml = header + (<br />) + fields
 
     return (
         <div>
