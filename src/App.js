@@ -3,12 +3,14 @@ import './App.css';
 import 'material-design-icons/iconfont/material-icons.css'
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
-import RegisterController from './components/register/RegisterController.js'
-import LoginController from './components/login/LoginController.js'
-import TeamsController from './components/teams/TeamsController.js'
-import TeamDetailsController from './components/team-details/TeamDetailsController.js'
+import RegisterContainer from './components/register/RegisterContainer.js'
+import LoginContainer from './components/login/LoginContainer.js'
+import TeamsContainer from './components/teams/view/TeamsContainer.js'
+import TeamDetailsContainer from './components/team-details/TeamDetailsContainer.js'
 import Landing from './components/landing/landing.js'
-import HeaderController from './components/header/HeaderController.js'
+import HeaderContainer from './components/header/HeaderContainer.js'
+import TeamCreateContainer from './components/teams/create/TeamCreateContainer.js'
+import TeamEditContainer from './components/teams/edit/TeamEditContainer.js'
 
 class App extends Component {
   render() {
@@ -17,14 +19,18 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <div className="row">
-              <HeaderController />
+              <HeaderContainer />
             </div>
             <div className="container">
               <Route exact path="/" component={Landing} />
-              <Route exact path="/register" component={RegisterController} />
-              <Route exact path="/login" component={LoginController} />
-              <Route exact path="/teams" component={TeamsController} />
-              <Route  path="/team-details/:teamId?/:mode?" component={TeamDetailsController} />
+              <Route exact path="/register" component={RegisterContainer} />
+              <Route exact path="/login" component={LoginContainer} />
+
+              <Route exact path="/teams" component={TeamsContainer} />
+              <Route exact path="/team/create" component={TeamCreateContainer} />
+              <Route exact path="/team/edit/:teamId" component={TeamEditContainer} />
+
+              <Route  path="/team-details/:teamId?/:mode?" component={TeamDetailsContainer} />
             </div>
           </div>
         </BrowserRouter>  
