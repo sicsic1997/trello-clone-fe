@@ -5,12 +5,15 @@ const Header = (props) => {
     return (
         <nav className="col s12 teal lighten-1 nav-extended">
             <div className="nav-wrapper">
-                <Link 
-                    to='/'
-                    className="left brand-logo">
-                    Trello
-                </Link>
+                <div className="left">
+                    <Link 
+                        to='/'
+                        className="brand-logo">
+                        Trello
+                    </Link>
+                </div>
                 <ul id="nav-mobile" className="right">
+                    <li><Link to='/teams'>Team management</Link></li>
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
                 </ul>

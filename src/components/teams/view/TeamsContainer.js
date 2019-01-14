@@ -20,7 +20,7 @@ class TeamsContainer extends React.Component {
     }
 
     onClickView = (id) => {
-        console.log(id);
+        this.props.history.push('/team/details/' + id);
     }
 
 
